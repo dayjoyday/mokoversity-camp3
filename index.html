@@ -39,5 +39,28 @@
   <div class="col-md-6">.col-md-6</div>
 </div>
 
+<div class="row">
+	<div class="col-md-12">
+		<div id="main"><canvas id="game"><canvas></canvas><div>
+	</div>
+</div>
+
+
+<script>
+(function () {
+	var canvas = document.getComentById('game');
+	var ctx = cavas.getContext('2d');
+
+	canvas.width = 480;
+	canvas.height = 320;
+
+	ctx.fillStyle = 'black';
+	ctx.beginPath();
+	cxt.arc(100,150,50,0,Math.PI*2,true);
+	ctx.fill();
+
+}) ();
+</script>
+
 </body>
 </html>
