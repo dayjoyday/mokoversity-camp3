@@ -3,16 +3,32 @@ var gameModule = (function () {
 	var timeoutvar,
 	    counter = 0;
 
+	var colors = ['#52D017','#FFE87C','#00bfff'],
+        length = colors,length;
+
+
+    function touchEvent() {
+    	var x = evt.clientX,
+    	    y = evt.clientY;
+
+    	console.log("Clicked:" + x + "," + y);
+    }
+
 	function start() {
+		document.getElementById('game');
+		startGame();
+    }
+
+    function startGame() {
   	    var canvas = document.getElementById('game'),
 	        ctx = canvas.getContext('2d'),
 
-	        ballX = Math.floor(Math.random() * 300),
-	        ballY = Math.floor(Math.random() * 500),
-	        ballR = Math.floor(Math.random() * 100);
+	        ballX = Math.floor(Math.random() * 600),
+	        ballY = Math.floor(Math.random() * 450),
+	        ballR = Math.floor(Math.random() * 80);
 
-	        canvas.width = 480;
-	        canvas.height = 320;
+	        canvas.width = 640;
+	        canvas.height = 480;
 
 	        ctx.fillStyle = 'black';
 	        ctx.beginPath();
@@ -24,10 +40,11 @@ var gameModule = (function () {
             } else{
             	timeoutVar = setTimeout(start, 1000);
             	counter = counter + 1;
-
-            	console.log("Counter:" + counter);
             }
 	    }
+           function gameOver() {
+            	console.log("Counter:" + counter);
+        }
 
 	    return {
 	    	start: start
