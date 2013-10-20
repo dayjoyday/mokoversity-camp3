@@ -1,6 +1,6 @@
 /*jslint browser: true, devel: true, closure: true */
 
-var gameModule = (function (document) {
+var gameModule = (function (document, $) {
 
     "use strict";
 
@@ -14,6 +14,15 @@ var gameModule = (function (document) {
 
     function gameOver() {
         console.log("Final: " + scores);
+        var canvas = document.getElementById('game'),
+            ctx = canvas.getContext('2d');
+            canvas.width = 640;
+            canvas.height = 480;
+
+
+        var api = "http://127.0.0.1:3000/scores?scores=" + scores;
+
+        $.ajax({ url: api});
     }
 
     function startGame() {
@@ -32,13 +41,13 @@ var gameModule = (function (document) {
         ctx.arc(ballX, ballY, ballR, 0, Math.PI * 2, true);
         ctx.fill();
 
-        if (counter >= 10000) {
+        if (counter >= 49) {
             gameOver();
-            } else {
-                setTimeout(startGame, 2000);
-                counter = counter + 1;
-            }
+        } else {
+            setTimeout(startGame, 500);
+            counter = counter + 1;
         }
+    }
 
     function touchEvent(evt) {
         var x = evt.clientX,
@@ -60,10 +69,10 @@ var gameModule = (function (document) {
         startGame();
     }
 
-        return {
-            start: start
-        };
+    return {
+        start: start
+    };
 
-}(document));
+}(document, $));
 
 gameModule.start();
